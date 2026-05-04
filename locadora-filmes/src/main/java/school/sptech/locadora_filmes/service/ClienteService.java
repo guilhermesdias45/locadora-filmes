@@ -3,6 +3,7 @@ package school.sptech.locadora_filmes.service;
 import org.springframework.stereotype.Service;
 import school.sptech.locadora_filmes.dto.ClienteRequest;
 import school.sptech.locadora_filmes.entidade.Cliente;
+import school.sptech.locadora_filmes.exception.ClienteDuplicadoException;
 import school.sptech.locadora_filmes.mapper.ClienteMapper;
 import school.sptech.locadora_filmes.repository.ClienteRepository;
 
@@ -21,6 +22,9 @@ public class ClienteService {
     }
 
     public Cliente cadastrarCliente(ClienteRequest cliente){
+        if (repository.existsByNomeAndEmail(cliente.getNome(), cliente.getEmail())){
+            throw new ClienteDuplicadoException();
+        }
         return repository.save(ClienteMapper.toEntity(cliente));
     }
 

@@ -6,4 +6,5 @@ import school.sptech.locadora_filmes.entidade.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+    boolean existsByNomeAndEmail(String nome, String email);
 }

@@ -6,4 +6,5 @@ import school.sptech.locadora_filmes.entidade.Filme;
 
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme, Long> {
+    boolean existsByTituloAndGeneroAndDiretor(String titulo, String genero, String diretor);
 }
