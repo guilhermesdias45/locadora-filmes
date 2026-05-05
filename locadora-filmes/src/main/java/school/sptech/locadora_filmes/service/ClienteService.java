@@ -22,7 +22,7 @@ public class ClienteService {
     }
 
     public Cliente cadastrarCliente(ClienteRequest cliente){
-        if (repository.existsByNomeAndEmail(cliente.getNome(), cliente.getEmail())){
+        if (repository.existsByEmail(cliente.getEmail())){
             throw new ClienteDuplicadoException();
         }
         return repository.save(ClienteMapper.toEntity(cliente));

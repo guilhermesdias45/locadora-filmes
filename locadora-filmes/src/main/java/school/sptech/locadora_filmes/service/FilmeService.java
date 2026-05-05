@@ -22,7 +22,7 @@ public class FilmeService {
     }
 
     public Filme salvarFilme(FilmeRequest filme){
-        if (repository.existsByTituloAndGeneroAndDiretor(filme.getTitulo(), filme.getGenero(), filme.getDiretor())){
+        if (repository.existsByTituloAndDiretor(filme.getTitulo(), filme.getDiretor())){
             throw new FilmeDuplicadoException();
         }
         return repository.save(FilmeMapper.toEntity(filme));
